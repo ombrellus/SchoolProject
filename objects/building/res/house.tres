@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BuildingRes" load_steps=6 format=3 uid="uid://p411ht033vib"]
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=7 format=3 uid="uid://p411ht033vib"]
 
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="1_kbjqs"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="1_qiw8f"]
 [ext_resource type="Script" path="res://objects/building/building_res.gd" id="1_re1hc"]
 [ext_resource type="Texture2D" uid="uid://djh0vvjo84lyb" path="res://objects/building/sprites/building2.png" id="2_i0chd"]
+[ext_resource type="PackedScene" uid="uid://o5bi418djcrm" path="res://objects/building/house.tscn" id="3_hg8kr"]
 
 [sub_resource type="Resource" id="Resource_wlslh"]
 script = ExtResource("1_kbjqs")
@@ -16,3 +17,5 @@ name = "house"
 icon = Array[Texture2D]([ExtResource("1_qiw8f"), ExtResource("2_i0chd")])
 desc = "A simple house, doesn't need much"
 prices = Array[ExtResource("1_kbjqs")]([SubResource("Resource_wlslh")])
+groundType = 3
+packed = ExtResource("3_hg8kr")

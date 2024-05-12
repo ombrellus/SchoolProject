@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://o5bi418djcrm"]
+
+[ext_resource type="Script" path="res://objects/building/basic_building.gd" id="1_eq1mh"]
+[ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="2_3emee"]
+[ext_resource type="Script" path="res://objects/utils/buildings/building_info.gd" id="2_m2se4"]
+[ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="3_myqsh"]
+
+[sub_resource type="Resource" id="Resource_jgqef"]
+script = ExtResource("2_m2se4")
+name = "House"
+type = 1
+material = 0
+
+[node name="BasicBuilding" type="Node2D"]
+script = ExtResource("1_eq1mh")
+info = SubResource("Resource_jgqef")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("2_3emee")
+offset = Vector2(0, -5)
+
+[node name="AllTheBuildingShit" parent="." instance=ExtResource("3_myqsh")]

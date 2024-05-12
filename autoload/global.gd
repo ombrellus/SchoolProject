@@ -1,5 +1,6 @@
 extends Node
 
 enum Resources {WOOD,ROCK,COIN,GOLD,DIAMOND}
-enum Grounds {NATURE,MANMADE,WATER}
+enum Grounds {NATURE,MANMADE,WATER,SOLID,ALL}
+enum BuildingType {RESOURCE,PRODUCER,DECORATION,MISC}
 
