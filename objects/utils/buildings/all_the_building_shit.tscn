@@ -1,11 +1,81 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp3m3w40cbvfm"]
+[gd_scene load_steps=3 format=3 uid="uid://dp3m3w40cbvfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8okv0"]
 size = Vector2(10, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhyj0"]
+size = Vector2(2, 2)
+
 [node name="AllTheBuildingShit" type="Node2D"]
 
 [node name="Rect" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rect"]
 shape = SubResource("RectangleShape2D_8okv0")
+
+[node name="Detectors" type="Node2D" parent="."]
+
+[node name="Dect" type="Area2D" parent="Detectors"]
+position = Vector2(10, 0)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect2" type="Area2D" parent="Detectors"]
+position = Vector2(-10, 0)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect2"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect3" type="Area2D" parent="Detectors"]
+position = Vector2(-10, 10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect3"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect4" type="Area2D" parent="Detectors"]
+position = Vector2(0, 10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect4"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect5" type="Area2D" parent="Detectors"]
+position = Vector2(10, 10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect5"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect6" type="Area2D" parent="Detectors"]
+position = Vector2(-10, -10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect6"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect7" type="Area2D" parent="Detectors"]
+position = Vector2(0, -10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect7"]
+shape = SubResource("RectangleShape2D_hhyj0")
+
+[node name="Dect8" type="Area2D" parent="Detectors"]
+position = Vector2(10, -10)
+collision_layer = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Dect8"]
+shape = SubResource("RectangleShape2D_hhyj0")

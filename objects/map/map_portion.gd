@@ -25,5 +25,11 @@ func _generate():
 			print(str(x)+","+str(y)+" "+str(sea))
 			if sea >= 0.17:
 				set_cell(0,Vector2i(x,y),get_cell_source_id(0,Vector2i(x,y)),Vector2i(3,0))
-			elif not sea <=0.04:
-				set_cell(0,Vector2i(x,y),get_cell_source_id(0,Vector2i(x,y)),Vector2i(2,0))
+				SetTilesAround(Vector2i(x,y),Vector2i(2,0))
+
+func SetTilesAround(pos:Vector2i,tile:Vector2i):
+	for c in get_surrounding_cells(pos):
+		var id = get_cell_source_id(0,c)
+		print(id)
+		if id != -1 and get_cell_atlas_coords(0,c) != Vector2i(3,0):
+			set_cell(0,c,id,tile)

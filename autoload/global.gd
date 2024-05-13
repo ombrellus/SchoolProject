@@ -9,3 +9,8 @@ enum Powers {
 	STONE_CUTTER
 }
 
+var resourceIcons:Dictionary={
+	Resources.WOOD: preload("res://ui/icons/logs.png"),
+	Resources.ROCK: preload("res://ui/icons/rocks.png")
+}
+

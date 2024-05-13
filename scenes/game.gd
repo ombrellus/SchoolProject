@@ -6,6 +6,8 @@ var pickedIcon:Texture2D
 var selectedTile:Vector2i
 var selectedTileMap:TileMap
 
+var priceTag:PackedScene = preload("res://ui/button/price_tag.tscn")
+
 var heldResources:Dictionary = {
 	Global.Resources.WOOD : 20
 }
@@ -53,10 +55,17 @@ func OpenBuildingInfo(build:Building,info:BuildingInfo):
 	%DestroyButtons.visible = true
 	selectedWorldBuilding = build
 	selectedTileMap = build.portion
-
 func OpenBuildPanel():
 	%BuildButtons.visible = true
 	CloseInfoPanel()
+	for c in $CanvasLayer/BuildButtons/GridContainer.get_children():
+		c.queue_free()
+	for p:Price in selectedBuilding.prices:
+		var cock:Control = priceTag.instantiate()
+		cock.amount = p.value
+		cock.icon = Global.resourceIcons[p.type]
+		$CanvasLayer/BuildButtons/GridContainer.add_child(cock)
+		cock.update()
 	if not CheckPrices(selectedBuilding.prices):
 		$CanvasLayer/BuildButtons/Build.disabled = true
 	else:

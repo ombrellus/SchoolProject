@@ -1,32 +1,33 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cml1qf85s2paw"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cml1qf85s2paw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_essaq"]
+[ext_resource type="FontFile" uid="uid://cnisifoj2bt86" path="res://ui/fonts/Sol Schori Bold.ttf" id="1_d15pe"]
+[ext_resource type="Texture2D" uid="uid://bqrnlhuv4knu1" path="res://ui/backk.png" id="1_ulgnq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkfgm"]
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxmuw"]
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c6x0"]
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+draw_center = false
 border_color = Color(1, 1, 1, 1)
 expand_margin_top = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f36uu"]
+draw_center = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8wgq"]
-bg_color = Color(0, 0, 0, 0.145098)
-border_width_top = 4
-border_color = Color(1, 1, 1, 1)
-expand_margin_top = 4.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
+texture = ExtResource("1_ulgnq")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
 [resource]
-Button/styles/disabled = SubResource("StyleBoxFlat_essaq")
+Button/styles/disabled = SubResource("StyleBoxFlat_qkfgm")
 Button/styles/focus = SubResource("StyleBoxFlat_qkfgm")
 Button/styles/hover = SubResource("StyleBoxFlat_gxmuw")
 Button/styles/normal = SubResource("StyleBoxFlat_6c6x0")
 Button/styles/pressed = SubResource("StyleBoxFlat_f36uu")
-Panel/styles/panel = SubResource("StyleBoxFlat_k8wgq")
+Label/fonts/font = ExtResource("1_d15pe")
+Panel/styles/panel = SubResource("StyleBoxTexture_e21qc")

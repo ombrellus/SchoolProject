@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=10 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_tlhk6"]
 [ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_awn8r"]
+[ext_resource type="Texture2D" uid="uid://hmnn12iad5da" path="res://ui/button/button2.png" id="5_5hqp3"]
+[ext_resource type="Texture2D" uid="uid://dr12aecipxjgr" path="res://ui/button/button3.png" id="6_uami6"]
+[ext_resource type="Texture2D" uid="uid://bqrnlhuv4knu1" path="res://ui/backk.png" id="7_2ni1f"]
+[ext_resource type="Texture2D" uid="uid://orpemhyoru0g" path="res://ui/button/button1.png" id="7_rk1sc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
+texture = ExtResource("7_2ni1f")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ewkbg")
@@ -29,7 +38,7 @@ offset = Vector2(0, -3)
 [node name="BuildButtons" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -54,10 +63,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -25.0
-offset_right = 100.0
+offset_right = 50.0
 offset_bottom = 25.0
 grow_vertical = 2
-text = "Build"
+icon = ExtResource("5_5hqp3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Nah" type="Button" parent="CanvasLayer/BuildButtons"]
 custom_minimum_size = Vector2(100, 50)
@@ -67,13 +79,32 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -50.0
 offset_top = -25.0
 offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(-170, -180)
-text = "Nah"
+icon = ExtResource("6_uami6")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="GridContainer" type="HBoxContainer" parent="CanvasLayer/BuildButtons"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -25.0
+offset_right = 219.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [node name="DestroyButtons" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -84,9 +115,20 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -64.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_awn8r")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DestroyButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_awn8r")
+theme_override_styles/panel = SubResource("StyleBoxTexture_e21qc")
 
 [node name="Destroy" type="Button" parent="CanvasLayer/DestroyButtons"]
 custom_minimum_size = Vector2(100, 50)
@@ -98,8 +140,10 @@ offset_top = -25.0
 offset_right = 100.0
 offset_bottom = 25.0
 grow_vertical = 2
-theme = ExtResource("4_awn8r")
-text = "Destroy"
+icon = ExtResource("7_rk1sc")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Nah" type="Button" parent="CanvasLayer/DestroyButtons"]
 custom_minimum_size = Vector2(100, 50)
@@ -116,7 +160,10 @@ grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(-170, -180)
 theme = ExtResource("4_awn8r")
-text = "Close"
+icon = ExtResource("6_uami6")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]

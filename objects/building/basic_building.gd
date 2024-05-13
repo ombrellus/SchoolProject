@@ -10,6 +10,8 @@ var canDelete:bool = true
 
 func _ready():
 	$AllTheBuildingShit/Rect.input_event.connect(_inputter)
+	if info.type != Global.BuildingType.PRODUCER:
+		$AllTheBuildingShit/Detectors.queue_free()
 
 func _inputter(viewport:Node,event:InputEvent,shape:int):
 	if event is InputEventScreenTouch:
