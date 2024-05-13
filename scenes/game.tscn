@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=5 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_tlhk6"]
+[ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_awn8r"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ewkbg")
 
-[node name="MapPortion" parent="." instance=ExtResource("1_foh0p")]
+[node name="BuildZone" type="Node2D" parent="."]
+
+[node name="MapPortion" parent="BuildZone" instance=ExtResource("1_foh0p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(23, 25)
+position = Vector2(45, 43)
 zoom = Vector2(3, 3)
 
 [node name="Preview" type="Sprite2D" parent="."]
@@ -34,6 +37,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/BuildButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_awn8r")
 
 [node name="Build" type="Button" parent="CanvasLayer/BuildButtons"]
 custom_minimum_size = Vector2(100, 50)
@@ -63,7 +75,50 @@ grow_vertical = 2
 pivot_offset = Vector2(-170, -180)
 text = "Nah"
 
-[node name="BuildZone" type="Node2D" parent="."]
+[node name="DestroyButtons" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_awn8r")
+
+[node name="Destroy" type="Button" parent="CanvasLayer/DestroyButtons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+grow_vertical = 2
+theme = ExtResource("4_awn8r")
+text = "Destroy"
+
+[node name="Nah" type="Button" parent="CanvasLayer/DestroyButtons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(-170, -180)
+theme = ExtResource("4_awn8r")
+text = "Close"
 
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]
+[connection signal="button_up" from="CanvasLayer/DestroyButtons/Destroy" to="." method="Destroy"]
+[connection signal="button_up" from="CanvasLayer/DestroyButtons/Nah" to="." method="CloseBuildPanel"]

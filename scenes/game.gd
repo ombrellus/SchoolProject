@@ -1,6 +1,7 @@
 extends Node2D
 
 var selectedBuilding:BuildingRes = preload("res://objects/building/res/house.tres")
+var selectedWorldBuilding:Building
 var pickedIcon:Texture2D
 var selectedTile:Vector2i
 var selectedTileMap:TileMap
@@ -11,6 +12,7 @@ var heldResources:Dictionary = {
 
 func _ready():
 	Events.tryPlacing.connect(CheckBuildingPossibility)
+	Events.buildingTouched.connect(OpenBuildingInfo)
 
 func CheckBuildingPossibility(pos:Vector2,tile:Vector2i,type:Global.Grounds,tileMap:TileMap):
 	if selectedBuilding == null:
@@ -32,15 +34,29 @@ func CheckBuildingPossibility(pos:Vector2,tile:Vector2i,type:Global.Grounds,tile
 func Build():
 	var build:Building = selectedBuilding.packed.instantiate()
 	build.position = selectedTileMap.map_to_local(selectedTile)
-	$BuildZone.add_child(build)
+	build.portion = selectedTileMap
+	build.tile = selectedTile
+	selectedTileMap.add_child(build)
 	build.get_node("Sprite2D").texture = pickedIcon
 	selectedTileMap.set_cell(1,selectedTile,selectedTileMap.get_cell_source_id(1,selectedTile),Vector2i(1,0))
 	Spend(selectedBuilding.prices)
 	CloseBuildPanel()
 	
 
+func Destroy():
+	GiveResources(selectedWorldBuilding.info.returnMaterial)
+	selectedWorldBuilding.Destroy()
+	CloseInfoPanel()
+
+func OpenBuildingInfo(build:Building,info:BuildingInfo):
+	CloseBuildPanel()
+	%DestroyButtons.visible = true
+	selectedWorldBuilding = build
+	selectedTileMap = build.portion
+
 func OpenBuildPanel():
 	%BuildButtons.visible = true
+	CloseInfoPanel()
 	if not CheckPrices(selectedBuilding.prices):
 		$CanvasLayer/BuildButtons/Build.disabled = true
 	else:
@@ -49,6 +65,9 @@ func OpenBuildPanel():
 func CloseBuildPanel():
 	%BuildButtons.visible = false
 	%Preview.visible = false
+
+func CloseInfoPanel():
+	%DestroyButtons.visible = false
 
 func CheckPrices(prices:Array[Price]) -> bool:
 	for p:Price in prices:
@@ -59,3 +78,7 @@ func CheckPrices(prices:Array[Price]) -> bool:
 func Spend(prices:Array[Price]):
 	for p:Price in prices:
 		heldResources[p.type] -= p.value
+
+func GiveResources(prices:Array[Price]):
+	for p:Price in prices:
+		heldResources[p.type] += p.value
