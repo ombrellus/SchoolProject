@@ -14,6 +14,7 @@ value = 10
 [resource]
 script = ExtResource("1_re1hc")
 name = "house"
+size = Vector2i(1, 1)
 icon = Array[Texture2D]([ExtResource("1_qiw8f"), ExtResource("2_i0chd")])
 desc = "A simple house, doesn't need much"
 prices = Array[ExtResource("1_kbjqs")]([SubResource("Resource_wlslh")])
