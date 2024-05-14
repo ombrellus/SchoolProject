@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvl5o8qh5a4fu"]
+
+[ext_resource type="Script" path="res://objects/building/basic_producer.gd" id="1_x57ka"]
+[ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="2_p2rhm"]
+[ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="3_yilgd"]
+
+[node name="BasicProducer" type="Node2D"]
+script = ExtResource("1_x57ka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_p2rhm")
+offset = Vector2(0, -5)
+
+[node name="AllTheBuildingShit" parent="." instance=ExtResource("3_yilgd")]
+
+[editable path="AllTheBuildingShit"]

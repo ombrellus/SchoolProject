@@ -6,11 +6,24 @@ var pickedIcon:Texture2D
 var selectedTile:Vector2i
 var selectedTileMap:TileMap
 
+var debug:bool = true
+
 var priceTag:PackedScene = preload("res://ui/button/price_tag.tscn")
 
 var heldResources:Dictionary = {
-	Global.Resources.WOOD : 20
+	Global.Resources.WOOD : 2000,
+	Global.Resources.ROCK : 2000,
+	Global.Resources.COIN : 2000
 }
+
+func _process(delta):
+	if debug:
+		if Input.is_action_just_pressed("debug1"):
+			selectedBuilding = preload("res://objects/building/res/house.tres")
+		if Input.is_action_just_pressed("debug2"):
+			selectedBuilding = preload("res://objects/building/res/factory.tres")
+		if Input.is_action_just_pressed("debug3"):
+			selectedBuilding = preload("res://objects/building/res/tree.tres")
 
 func _ready():
 	Events.tryPlacing.connect(CheckBuildingPossibility)

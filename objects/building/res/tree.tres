@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=8 format=3 uid="uid://puhphvvvs1jj"]
+
+[ext_resource type="Texture2D" uid="uid://bp530dhdxgr1u" path="res://objects/building/sprites/building5.png" id="1_5ek2x"]
+[ext_resource type="Texture2D" uid="uid://btdq7sa787d1" path="res://objects/building/sprites/building6.png" id="2_u3fyd"]
+[ext_resource type="Texture2D" uid="uid://bwsy2pv1rckfr" path="res://objects/building/sprites/building7.png" id="3_vx4tv"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="4_2ax0l"]
+[ext_resource type="PackedScene" uid="uid://cbk58fji1ufqd" path="res://objects/building/game/tree.tscn" id="4_yy5w7"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="5_dmrp6"]
+
+[sub_resource type="Resource" id="Resource_wlslh"]
+script = ExtResource("4_2ax0l")
+type = 2
+value = 50
+
+[resource]
+script = ExtResource("5_dmrp6")
+name = "tree"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("1_5ek2x"), ExtResource("2_u3fyd"), ExtResource("3_vx4tv")])
+desc = "A tree"
+prices = Array[ExtResource("4_2ax0l")]([SubResource("Resource_wlslh")])
+groundType = 0
+packed = ExtResource("4_yy5w7")

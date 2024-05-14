@@ -6,5 +6,6 @@ class_name BuildingInfo
 @export var type:Global.BuildingType
 @export var material:Global.Resources
 @export var returnMaterial:Array[Price]
+@export var resourceMaterial:Array[Price]
 @export var alwaysBreakable:bool = true
 @export var powerNeeded:Global.Powers

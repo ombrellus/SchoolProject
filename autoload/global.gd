@@ -11,6 +11,7 @@ enum Powers {
 
 var resourceIcons:Dictionary={
 	Resources.WOOD: preload("res://ui/icons/logs.png"),
-	Resources.ROCK: preload("res://ui/icons/rocks.png")
+	Resources.ROCK: preload("res://ui/icons/rocks.png"),
+	Resources.COIN: preload("res://ui/icons/coins.png")
 }
 
