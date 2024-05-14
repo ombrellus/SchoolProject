@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=6 format=3 uid="uid://dkq75gjqmhm4g"]
+
+[ext_resource type="Texture2D" uid="uid://dbhjnvtgi0yno" path="res://objects/building/sprites/building16.png" id="1_8t5g2"]
+[ext_resource type="PackedScene" uid="uid://d1ur7w3c42qc6" path="res://objects/building/game/rock.tscn" id="2_xmwaq"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="5_saklq"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="6_rmn2s"]
+
+[sub_resource type="Resource" id="Resource_wlslh"]
+script = ExtResource("5_saklq")
+type = 2
+value = 100
+
+[resource]
+script = ExtResource("6_rmn2s")
+name = "rock"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("1_8t5g2")])
+desc = "A rock"
+prices = Array[ExtResource("5_saklq")]([SubResource("Resource_wlslh")])
+groundType = 3
+packed = ExtResource("2_xmwaq")

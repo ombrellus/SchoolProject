@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game
 
 var selectedBuilding:BuildingRes = preload("res://objects/building/res/house.tres")
 var selectedWorldBuilding:Building
@@ -28,6 +29,7 @@ func _process(delta):
 func _ready():
 	Events.tryPlacing.connect(CheckBuildingPossibility)
 	Events.buildingTouched.connect(OpenBuildingInfo)
+	Events.resourceProduced.connect(GiveSingleResource)
 
 func CheckBuildingPossibility(pos:Vector2,tile:Vector2i,type:Global.Grounds,tileMap:TileMap):
 	if selectedBuilding == null:
@@ -104,3 +106,6 @@ func Spend(prices:Array[Price]):
 func GiveResources(prices:Array[Price]):
 	for p:Price in prices:
 		heldResources[p.type] += p.value
+
+func GiveSingleResource(price:Price,build:Building = null):
+	heldResources[price.type] += price.value

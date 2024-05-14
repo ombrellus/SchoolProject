@@ -45,4 +45,5 @@ func GiveResources(resources:Array[Price]):
 	var pop = popUp.instantiate()
 	pop.values = full
 	pop.position = position+ Vector2(0,-8)
+	Events.resourceProduced.emit(full,self)
 	portion.add_child(pop)

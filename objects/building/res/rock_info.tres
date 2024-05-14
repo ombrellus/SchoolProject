@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingInfo" load_steps=5 format=3 uid="uid://bo1fjuttjeau8"]
+
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="1_b5sl3"]
+[ext_resource type="Script" path="res://objects/utils/buildings/building_info.gd" id="2_a3e0y"]
+
+[sub_resource type="Resource" id="Resource_n3qhv"]
+script = ExtResource("1_b5sl3")
+type = 1
+value = 2
+
+[sub_resource type="Resource" id="Resource_4lx48"]
+script = ExtResource("1_b5sl3")
+type = 1
+value = 2
+
+[resource]
+script = ExtResource("2_a3e0y")
+name = "Rock"
+size = Vector2i(1, 1)
+type = 0
+material = 1
+returnMaterial = Array[ExtResource("1_b5sl3")]([SubResource("Resource_4lx48")])
+resourceMaterial = Array[ExtResource("1_b5sl3")]([SubResource("Resource_n3qhv")])
+alwaysBreakable = false
+powerNeeded = 1
