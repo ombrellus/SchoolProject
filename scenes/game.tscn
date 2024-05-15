@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=13 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_tlhk6"]
 [ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_awn8r"]
+[ext_resource type="Script" path="res://objects/utils/cool_camera.gd" id="4_eegbr"]
 [ext_resource type="Texture2D" uid="uid://hmnn12iad5da" path="res://ui/button/button2.png" id="5_5hqp3"]
 [ext_resource type="Texture2D" uid="uid://dr12aecipxjgr" path="res://ui/button/button3.png" id="6_uami6"]
 [ext_resource type="Texture2D" uid="uid://bqrnlhuv4knu1" path="res://ui/backk.png" id="7_2ni1f"]
 [ext_resource type="Texture2D" uid="uid://orpemhyoru0g" path="res://ui/button/button1.png" id="7_rk1sc"]
+[ext_resource type="PackedScene" uid="uid://7l6luawghest" path="res://objects/map/portion_creator.tscn" id="9_nfare"]
+[ext_resource type="PackedScene" uid="uid://j3tfupt1b25i" path="res://ui/button/price_tag.tscn" id="11_b7q3i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
 texture = ExtResource("7_2ni1f")
@@ -19,11 +22,24 @@ script = ExtResource("1_ewkbg")
 
 [node name="BuildZone" type="Node2D" parent="."]
 
+[node name="PortionCreator" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(130, 30)
+
+[node name="PortionCreator2" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(-70, 30)
+
+[node name="PortionCreator3" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(30, -70)
+
+[node name="PortionCreator4" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(30, 130)
+
 [node name="MapPortion" parent="BuildZone" instance=ExtResource("1_foh0p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(45, 43)
 zoom = Vector2(3, 3)
+script = ExtResource("4_eegbr")
 
 [node name="Preview" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -165,7 +181,53 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="GridContainer" type="ScrollContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/Control/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="PriceTag" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+layout_mode = 2
+
+[node name="PriceTag2" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+layout_mode = 2
+
+[node name="PriceTag3" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+layout_mode = 2
+
+[node name="PriceTag4" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+layout_mode = 2
+
+[node name="PriceTag5" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+layout_mode = 2
+
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]
 [connection signal="button_up" from="CanvasLayer/DestroyButtons/Destroy" to="." method="Destroy"]
-[connection signal="button_up" from="CanvasLayer/DestroyButtons/Nah" to="." method="CloseBuildPanel"]
+[connection signal="button_up" from="CanvasLayer/DestroyButtons/Nah" to="." method="CloseInfoPanel"]

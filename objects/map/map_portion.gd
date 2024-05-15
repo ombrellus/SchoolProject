@@ -2,7 +2,7 @@ extends TileMap
 
 @export var noise:FastNoiseLite = FastNoiseLite.new()
 
-@export var hasRocks:bool = true
+@export var info:PortionInfo
 
 func _ready():
 	_generate()
@@ -10,6 +10,8 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		if event.is_released():
+			if Global.camera.offset != Global.camera.last_pos:
+				return
 			var pos = get_local_mouse_position()
 			var tile_pos = local_to_map(pos)
 			var data = get_cell_tile_data(0,tile_pos)
@@ -17,7 +19,7 @@ func _unhandled_input(event):
 			if data == null:
 				return
 			if get_cell_tile_data(1,tile_pos).get_custom_data("used") == false:
-				Events.tryPlacing.emit(truePos,tile_pos,data.get_custom_data("type"),self)
+				Events.tryPlacing.emit(truePos+ global_position,tile_pos,data.get_custom_data("type"),self)
 
 func _generate():
 	noise.seed = randi()
@@ -28,9 +30,8 @@ func _generate():
 			if sea >= 0.17:
 				set_cell(0,Vector2i(x,y),get_cell_source_id(0,Vector2i(x,y)),Vector2i(3,0))
 				SetTilesAround(Vector2i(x,y),Vector2i(2,0))
-	GenerateDet(preload("res://objects/building/res/tree.tres"),Vector2i(6,12))
-	if hasRocks:
-		GenerateDet(preload("res://objects/building/res/rock.tres"),Vector2i(3,5))
+	if info.hasTrees: GenerateDet(preload("res://objects/building/res/tree.tres"),Vector2i(6,12))
+	if info.hasRocks: GenerateDet(preload("res://objects/building/res/rock.tres"),Vector2i(3,5))
 
 func GenerateDet(build:BuildingRes,ra:Vector2i):
 	var cells:Array[Vector2i]

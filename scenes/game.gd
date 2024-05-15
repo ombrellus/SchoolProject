@@ -27,6 +27,8 @@ func _process(delta):
 			selectedBuilding = preload("res://objects/building/res/tree.tres")
 
 func _ready():
+	Global.mainGame = self
+	Global.camera = $Camera2D
 	Events.tryPlacing.connect(CheckBuildingPossibility)
 	Events.buildingTouched.connect(OpenBuildingInfo)
 	Events.resourceProduced.connect(GiveSingleResource)
@@ -65,14 +67,20 @@ func Destroy():
 	selectedWorldBuilding.Destroy()
 	CloseInfoPanel()
 
+func moveResourceThing(off:Vector2):
+	var tween = create_tween()
+	tween.tween_property(%GridContainer,"position",off,0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
 func OpenBuildingInfo(build:Building,info:BuildingInfo):
 	CloseBuildPanel()
 	%DestroyButtons.visible = true
 	selectedWorldBuilding = build
 	selectedTileMap = build.portion
+	moveResourceThing(Vector2(0,-60))
 func OpenBuildPanel():
 	%BuildButtons.visible = true
 	CloseInfoPanel()
+	moveResourceThing(Vector2(0,-60))
 	for c in $CanvasLayer/BuildButtons/GridContainer.get_children():
 		c.queue_free()
 	for p:Price in selectedBuilding.prices:
@@ -89,9 +97,13 @@ func OpenBuildPanel():
 func CloseBuildPanel():
 	%BuildButtons.visible = false
 	%Preview.visible = false
+	moveResourceThing(Vector2(0,0))
+	
 
 func CloseInfoPanel():
 	%DestroyButtons.visible = false
+	moveResourceThing(Vector2(0,0))
+	
 
 func CheckPrices(prices:Array[Price]) -> bool:
 	for p:Price in prices:

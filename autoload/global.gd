@@ -9,6 +9,9 @@ enum Powers {
 	STONE_CUTTER
 }
 
+var mainGame:Game
+var camera:Camera2D
+
 var resourceIcons:Dictionary={
 	Resources.WOOD: preload("res://ui/icons/logs.png"),
 	Resources.ROCK: preload("res://ui/icons/rocks.png"),

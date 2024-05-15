@@ -20,6 +20,8 @@ func _ready():
 func _inputter(viewport:Node,event:InputEvent,shape:int):
 	if event is InputEventScreenTouch:
 		if event.is_released():
+			if Global.camera.offset != Global.camera.last_pos:
+				return
 			Events.buildingTouched.emit(self,info)
 
 func Destroy():
