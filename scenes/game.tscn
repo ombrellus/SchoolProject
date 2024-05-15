@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=17 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
@@ -10,12 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://bqrnlhuv4knu1" path="res://ui/backk.png" id="7_2ni1f"]
 [ext_resource type="Texture2D" uid="uid://orpemhyoru0g" path="res://ui/button/button1.png" id="7_rk1sc"]
 [ext_resource type="PackedScene" uid="uid://7l6luawghest" path="res://objects/map/portion_creator.tscn" id="9_nfare"]
-[ext_resource type="PackedScene" uid="uid://j3tfupt1b25i" path="res://ui/button/price_tag.tscn" id="11_b7q3i"]
+[ext_resource type="PackedScene" uid="uid://bsimhrk7034al" path="res://ui/hud/resource_thing.tscn" id="11_afba5"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="12_x8yyw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
 texture = ExtResource("7_2ni1f")
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
+
+[sub_resource type="Resource" id="Resource_lbj5h"]
+script = ExtResource("12_x8yyw")
+type = 0
+value = 20
+
+[sub_resource type="Resource" id="Resource_004hi"]
+script = ExtResource("12_x8yyw")
+type = 1
+value = 0
+
+[sub_resource type="Resource" id="Resource_w1dtt"]
+script = ExtResource("12_x8yyw")
+type = 2
+value = 70000
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ewkbg")
@@ -212,20 +228,17 @@ size_flags_vertical = 3
 mouse_filter = 2
 alignment = 1
 
-[node name="PriceTag" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+[node name="ResourceThing" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
 layout_mode = 2
+info = SubResource("Resource_lbj5h")
 
-[node name="PriceTag2" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+[node name="ResourceThing2" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
 layout_mode = 2
+info = SubResource("Resource_004hi")
 
-[node name="PriceTag3" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
+[node name="ResourceThing3" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
 layout_mode = 2
-
-[node name="PriceTag4" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
-layout_mode = 2
-
-[node name="PriceTag5" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_b7q3i")]
-layout_mode = 2
+info = SubResource("Resource_w1dtt")
 
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]

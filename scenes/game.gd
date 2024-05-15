@@ -12,9 +12,9 @@ var debug:bool = true
 var priceTag:PackedScene = preload("res://ui/button/price_tag.tscn")
 
 var heldResources:Dictionary = {
-	Global.Resources.WOOD : 2000,
-	Global.Resources.ROCK : 2000,
-	Global.Resources.COIN : 2000
+	Global.Resources.WOOD : 20,
+	Global.Resources.ROCK : 0,
+	Global.Resources.COIN : 70000
 }
 
 func _process(delta):
@@ -32,6 +32,7 @@ func _ready():
 	Events.tryPlacing.connect(CheckBuildingPossibility)
 	Events.buildingTouched.connect(OpenBuildingInfo)
 	Events.resourceProduced.connect(GiveSingleResource)
+	
 
 func CheckBuildingPossibility(pos:Vector2,tile:Vector2i,type:Global.Grounds,tileMap:TileMap):
 	if selectedBuilding == null:
@@ -114,10 +115,17 @@ func CheckPrices(prices:Array[Price]) -> bool:
 func Spend(prices:Array[Price]):
 	for p:Price in prices:
 		heldResources[p.type] -= p.value
+		var negative = Price.new()
+		negative.type = p.type
+		negative.value = p.value*-1
+		Events.updateResources.emit(negative)
 
 func GiveResources(prices:Array[Price]):
 	for p:Price in prices:
 		heldResources[p.type] += p.value
+		Events.updateResources.emit(p)
+		
 
 func GiveSingleResource(price:Price,build:Building = null):
 	heldResources[price.type] += price.value
+	Events.updateResources.emit(price)

@@ -5,6 +5,7 @@ class_name ProducerBuilding
 var speed:float = 3
 
 func _ready():
+	super()
 	speed = maxSpeed
 
 
