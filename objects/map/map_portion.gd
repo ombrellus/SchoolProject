@@ -40,15 +40,17 @@ func GenerateDet(build:BuildingRes,ra:Vector2i):
 			cells.append(i)
 	for i in randi_range(ra.x,ra.y):
 		var tile = cells.pick_random()
-		spawnBuilding(tile,build)
+		spawnBuilding(tile,build,i)
 		cells.remove_at(cells.find(tile))
 		
 
-func spawnBuilding(tile:Vector2i,sex:BuildingRes):
+func spawnBuilding(tile:Vector2i,sex:BuildingRes,n:int):
 	var build:Building = sex.packed.instantiate()
 	build.position = map_to_local(tile)
 	build.portion = self
 	build.tile = tile
+	build.get_node("Sprite2D").visible = false
+	build.spawnNum = n
 	add_child(build)
 	build.get_node("Sprite2D").texture = sex.icon.pick_random()
 	set_cell(1,tile,get_cell_source_id(1,tile),Vector2i(1,0))

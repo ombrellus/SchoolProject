@@ -47,8 +47,20 @@ position = Vector2(-70, 30)
 [node name="PortionCreator3" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(30, -70)
 
+[node name="PortionCreator7" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(-70, -70)
+
+[node name="PortionCreator8" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(130, -70)
+
 [node name="PortionCreator4" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(30, 130)
+
+[node name="PortionCreator5" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(130, 130)
+
+[node name="PortionCreator6" parent="BuildZone" instance=ExtResource("9_nfare")]
+position = Vector2(-70, 130)
 
 [node name="MapPortion" parent="BuildZone" instance=ExtResource("1_foh0p")]
 
