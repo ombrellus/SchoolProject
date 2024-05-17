@@ -14,21 +14,14 @@ var start_angle: float
 var current_angle: float
 
 var last_pos:Vector2
-
 func _input(event):
-	if event is InputEventScreenTouch:
-		if event.pressed:
-			last_pos = offset
-		_handle_touch(event)
-	elif event is InputEventScreenDrag:
-		_handle_drag(event)
+	pass
 
 func _handle_touch(event: InputEventScreenTouch):
 	if event.pressed:
 		touch_points[event.index] = event.position
 	else:
 		touch_points.erase(event.index)
-
 	if touch_points.size() < 2:
 		start_dist = 0
 
@@ -37,3 +30,12 @@ func _handle_drag(event: InputEventScreenDrag):
 
 	if touch_points.size() == 1 and can_pan:
 		offset -= event.relative * pan_speed
+
+
+func gui(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			last_pos = offset
+		_handle_touch(event)
+	elif event is InputEventScreenDrag:
+		_handle_drag(event)

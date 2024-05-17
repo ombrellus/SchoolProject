@@ -17,6 +17,8 @@ var heldResources:Dictionary = {
 	Global.Resources.COIN : 70000
 }
 
+@onready var handleStoppers:Array[Control] = [%BuildButtons, %DestroyButtons, $CanvasLayer/Control]
+
 func _process(delta):
 	if debug:
 		if Input.is_action_just_pressed("debug1"):
