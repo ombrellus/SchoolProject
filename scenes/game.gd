@@ -12,9 +12,9 @@ var debug:bool = true
 var priceTag:PackedScene = preload("res://ui/button/price_tag.tscn")
 
 var heldResources:Dictionary = {
-	Global.Resources.WOOD : 20,
+	Global.Resources.WOOD : 5,
 	Global.Resources.ROCK : 0,
-	Global.Resources.COIN : 70000
+	Global.Resources.COIN : 15
 }
 
 @onready var handleStoppers:Array[Control] = [%BuildButtons, %DestroyButtons, $CanvasLayer/Control]
@@ -34,6 +34,7 @@ func _ready():
 	Events.tryPlacing.connect(CheckBuildingPossibility)
 	Events.buildingTouched.connect(OpenBuildingInfo)
 	Events.resourceProduced.connect(GiveSingleResource)
+	Events.buildingChosen.connect(ChangeBuilding)
 	
 
 func CheckBuildingPossibility(pos:Vector2,tile:Vector2i,type:Global.Grounds,tileMap:TileMap):
@@ -63,7 +64,9 @@ func Build():
 	selectedTileMap.set_cell(1,selectedTile,selectedTileMap.get_cell_source_id(1,selectedTile),Vector2i(1,0))
 	Spend(selectedBuilding.prices)
 	CloseBuildPanel()
-	
+
+func ChangeBuilding(res:BuildingRes):
+	selectedBuilding = res
 
 func Destroy():
 	GiveResources(selectedWorldBuilding.info.returnMaterial)
@@ -79,11 +82,11 @@ func OpenBuildingInfo(build:Building,info:BuildingInfo):
 	%DestroyButtons.visible = true
 	selectedWorldBuilding = build
 	selectedTileMap = build.portion
-	moveResourceThing(Vector2(0,-60))
+	moveResourceThing(Vector2(0,-79))
 func OpenBuildPanel():
 	%BuildButtons.visible = true
 	CloseInfoPanel()
-	moveResourceThing(Vector2(0,-60))
+	moveResourceThing(Vector2(0,-79))
 	for c in $CanvasLayer/BuildButtons/GridContainer.get_children():
 		c.queue_free()
 	for p:Price in selectedBuilding.prices:
@@ -100,12 +103,12 @@ func OpenBuildPanel():
 func CloseBuildPanel():
 	%BuildButtons.visible = false
 	%Preview.visible = false
-	moveResourceThing(Vector2(0,0))
+	moveResourceThing(Vector2(0,-19))
 	
 
 func CloseInfoPanel():
 	%DestroyButtons.visible = false
-	moveResourceThing(Vector2(0,0))
+	moveResourceThing(Vector2(0,-19))
 	
 
 func CheckPrices(prices:Array[Price]) -> bool:

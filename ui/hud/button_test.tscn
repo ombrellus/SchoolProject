@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhti5xbjkomc3"]
+
+[ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="1_wosdf"]
+[ext_resource type="Texture2D" uid="uid://7d8iyxe737es" path="res://ui/hud/shop_buttons/button1.png" id="2_i06cv"]
+[ext_resource type="Script" path="res://ui/hud/button_test.gd" id="3_lrmrr"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(100, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_wosdf")
+icon = ExtResource("2_i06cv")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lrmrr")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

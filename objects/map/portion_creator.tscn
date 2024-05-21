@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://7l6luawghest"]
+[gd_scene load_steps=10 format=3 uid="uid://7l6luawghest"]
 
 [ext_resource type="Script" path="res://objects/map/portion_creator.gd" id="1_54xa3"]
 [ext_resource type="Script" path="res://objects/map/portion_info.gd" id="2_bsf7u"]
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="2_u8b2w"]
 [ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_7dirp"]
+[ext_resource type="Texture2D" uid="uid://bojkaqp6aanu8" path="res://ui/button/maker.png" id="4_cy5j8"]
+[ext_resource type="Texture2D" uid="uid://rm3yy8cn8sjm" path="res://ui/icons/coins.png" id="6_f7mrm"]
 
 [sub_resource type="Resource" id="Resource_0ubh0"]
 script = ExtResource("2_u8b2w")
 type = 2
-value = 100
+value = 50
 
 [sub_resource type="Resource" id="Resource_ghfig"]
 script = ExtResource("2_bsf7u")
@@ -16,15 +18,17 @@ hasTrees = true
 hasRocks = true
 cost = Array[ExtResource("2_u8b2w")]([SubResource("Resource_0ubh0")])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdmkc"]
+size = Vector2(24, 26)
+
 [node name="PortionCreator" type="Node2D"]
 script = ExtResource("1_54xa3")
 info = SubResource("Resource_ghfig")
 
-[node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(30, 30)
-offset_right = 30.0
-offset_bottom = 31.0
-text = "C"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_cy5j8")
 
 [node name="Point" type="Node2D" parent="."]
 position = Vector2(-30, -30)
@@ -42,4 +46,26 @@ text = "Not enough resources"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_up" from="Button" to="." method="create"]
+[node name="Label2" type="Label" parent="."]
+offset_left = 6.0
+offset_top = -4.0
+offset_right = 49.0
+offset_bottom = 7.0
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("4_7dirp")
+theme_override_font_sizes/font_size = 8
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_vdmkc")
+
+[node name="Coins" type="Sprite2D" parent="."]
+position = Vector2(12, -1)
+texture = ExtResource("6_f7mrm")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

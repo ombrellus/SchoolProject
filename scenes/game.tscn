@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=30 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
@@ -12,6 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://7l6luawghest" path="res://objects/map/portion_creator.tscn" id="9_nfare"]
 [ext_resource type="PackedScene" uid="uid://bsimhrk7034al" path="res://ui/hud/resource_thing.tscn" id="11_afba5"]
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="12_x8yyw"]
+[ext_resource type="Texture2D" uid="uid://eihh67o8v3ub" path="res://ui/hud/shop_bar.png" id="13_1b8o1"]
+[ext_resource type="Texture2D" uid="uid://s6by44iilfv4" path="res://ui/hud/shop.png" id="13_xvv6s"]
+[ext_resource type="PackedScene" uid="uid://d3k5x1yyi4bip" path="res://ui/hud/shop_option.tscn" id="15_yb04b"]
+[ext_resource type="PackedScene" uid="uid://dhti5xbjkomc3" path="res://ui/hud/button_test.tscn" id="16_sntpx"]
+[ext_resource type="Texture2D" uid="uid://7d8iyxe737es" path="res://ui/hud/shop_buttons/button1.png" id="17_86dhx"]
+[ext_resource type="Texture2D" uid="uid://havsjjju8522" path="res://ui/hud/shop_buttons/button2.png" id="18_m6rlp"]
+[ext_resource type="Resource" uid="uid://p411ht033vib" path="res://objects/building/res/house.tres" id="19_7waw3"]
+[ext_resource type="Texture2D" uid="uid://qtydc8df4u2v" path="res://ui/hud/shop_buttons/button3.png" id="20_n73jt"]
+[ext_resource type="Texture2D" uid="uid://dvfx38k1bgiya" path="res://ui/hud/shop_buttons/button4.png" id="21_58xd2"]
+[ext_resource type="Resource" uid="uid://khl7koiee2wv" path="res://objects/building/res/factory.tres" id="22_4312s"]
+[ext_resource type="Texture2D" uid="uid://bods50t24tr3l" path="res://ui/hud/shop_buttons/button5.png" id="23_0x3ol"]
+[ext_resource type="Texture2D" uid="uid://d4eaet8kypfjc" path="res://ui/hud/shop_buttons/button6.png" id="24_jblmp"]
+[ext_resource type="Resource" uid="uid://puhphvvvs1jj" path="res://objects/building/res/tree.tres" id="25_a2yq5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
 texture = ExtResource("7_2ni1f")
@@ -21,7 +34,7 @@ axis_stretch_vertical = 1
 [sub_resource type="Resource" id="Resource_lbj5h"]
 script = ExtResource("12_x8yyw")
 type = 0
-value = 20
+value = 5
 
 [sub_resource type="Resource" id="Resource_004hi"]
 script = ExtResource("12_x8yyw")
@@ -31,7 +44,7 @@ value = 0
 [sub_resource type="Resource" id="Resource_w1dtt"]
 script = ExtResource("12_x8yyw")
 type = 2
-value = 70000
+value = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ewkbg")
@@ -84,6 +97,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 10.0
+offset_right = -70.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -225,7 +242,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -50.0
+offset_top = -34.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -237,8 +254,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = 1.0
+offset_top = -19.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -260,25 +277,118 @@ info = SubResource("Resource_lbj5h")
 layout_mode = 2
 info = SubResource("Resource_004hi")
 
-[node name="ResourceThing4" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_004hi")
-
-[node name="ResourceThing5" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_004hi")
-
-[node name="ResourceThing6" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_004hi")
-
-[node name="ResourceThing3" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_w1dtt")
-
 [node name="ResourceThing7" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
 layout_mode = 2
 info = SubResource("Resource_w1dtt")
+
+[node name="ShopMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = 64.0
+offset_right = -207.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("13_1b8o1")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -120.0
+offset_bottom = -257.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("13_xvv6s")
+stretch_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ShopMenu/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer"]
+layout_mode = 2
+
+[node name="Control" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+
+[node name="Control2" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+
+[node name="TestMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 61.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/TestMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.434
+offset_top = -3.39024
+offset_right = -58.434
+offset_bottom = -3.39024
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(429.009, 31.847)
+theme = ExtResource("4_awn8r")
+
+[node name="GridContainer" type="HBoxContainer" parent="CanvasLayer/TestMenu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -27.5
+offset_right = 219.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
+layout_mode = 2
+icons = Array[Texture2D]([ExtResource("17_86dhx"), ExtResource("18_m6rlp")])
+selection = ExtResource("19_7waw3")
+
+[node name="Button2" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
+layout_mode = 2
+icons = Array[Texture2D]([ExtResource("20_n73jt"), ExtResource("21_58xd2")])
+selection = ExtResource("22_4312s")
+
+[node name="Button3" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
+layout_mode = 2
+icons = Array[Texture2D]([ExtResource("23_0x3ol"), ExtResource("24_jblmp")])
+selection = ExtResource("25_a2yq5")
 
 [connection signal="gui_input" from="CanvasLayer/Control2" to="Camera2D" method="gui"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
