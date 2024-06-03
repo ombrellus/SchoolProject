@@ -31,7 +31,7 @@ func Destroy():
 	portion.set_cell(1,tile,portion.get_cell_source_id(1,tile),Vector2i(0,0))
 	queue_free()
 
-func DetectAroundResourceBuildings() -> Array[Price]:
+func DetectAroundResourceBuildings(type:Global.Resources) -> Array[Price]:
 	var areas:Array[Price] = []
 	var hehe = detectors.get_children()
 	if hehe.is_empty(): return []
@@ -40,7 +40,7 @@ func DetectAroundResourceBuildings() -> Array[Price]:
 			var build:Building=  dect.get_overlapping_areas()[0].get_parent().get_parent()
 			if build.info.type ==Global.BuildingType.RESOURCE:
 				for e in build.info.resourceMaterial:
-					if e.type == info.material: areas.append(e)
+					if type == e.type: areas.append(e)
 	return areas
 
 func GiveResources(resources:Array[Price]):
