@@ -27,6 +27,7 @@ func create():
 	var portion = preload("res://objects/map/map_portion.tscn").instantiate()
 	portion.global_position = $Point.global_position
 	portion.info = info
+	Events.createPortion.emit(info.cost,portion)
 	get_parent().add_child(portion)
 	queue_free()
 

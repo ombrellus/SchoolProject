@@ -17,4 +17,3 @@ var resourceIcons:Dictionary={
 	Resources.ROCK: preload("res://ui/icons/rocks.png"),
 	Resources.COIN: preload("res://ui/icons/coins.png")
 }
-

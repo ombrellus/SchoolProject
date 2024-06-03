@@ -12,10 +12,10 @@ value = 100
 
 [resource]
 script = ExtResource("6_rmn2s")
-name = "rock"
+name = "Rock"
 size = Vector2i(1, 1)
 icon = Array[Texture2D]([ExtResource("1_8t5g2")])
-desc = "A rock"
+desc = "Can be broken for rocks"
 prices = Array[ExtResource("5_saklq")]([SubResource("Resource_wlslh")])
 groundType = 3
 packed = ExtResource("2_xmwaq")

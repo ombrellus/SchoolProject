@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq5i2dda6eji2"]
+
+[ext_resource type="Script" path="res://objects/building/tilecreator_building.gd" id="1_fj4fd"]
+[ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="2_lmfg7"]
+[ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="3_hs7t4"]
+
+[node name="BasicBuilding" type="Node2D"]
+script = ExtResource("1_fj4fd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_lmfg7")
+offset = Vector2(0, -5)
+
+[node name="AllTheBuildingShit" parent="." instance=ExtResource("3_hs7t4")]
+
+[editable path="AllTheBuildingShit"]

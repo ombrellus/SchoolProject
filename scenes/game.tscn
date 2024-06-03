@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=32 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
@@ -18,9 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://dhti5xbjkomc3" path="res://ui/hud/button_test.tscn" id="16_sntpx"]
 [ext_resource type="Texture2D" uid="uid://7d8iyxe737es" path="res://ui/hud/shop_buttons/button1.png" id="17_86dhx"]
 [ext_resource type="Texture2D" uid="uid://havsjjju8522" path="res://ui/hud/shop_buttons/button2.png" id="18_m6rlp"]
+[ext_resource type="Resource" uid="uid://dkq75gjqmhm4g" path="res://objects/building/res/rock.tres" id="19_3hpsi"]
 [ext_resource type="Resource" uid="uid://p411ht033vib" path="res://objects/building/res/house.tres" id="19_7waw3"]
 [ext_resource type="Texture2D" uid="uid://qtydc8df4u2v" path="res://ui/hud/shop_buttons/button3.png" id="20_n73jt"]
 [ext_resource type="Texture2D" uid="uid://dvfx38k1bgiya" path="res://ui/hud/shop_buttons/button4.png" id="21_58xd2"]
+[ext_resource type="Texture2D" uid="uid://dqp4fwwtwxkoo" path="res://ui/hud/shop_buttons/button7.png" id="21_eah8y"]
 [ext_resource type="Resource" uid="uid://khl7koiee2wv" path="res://objects/building/res/factory.tres" id="22_4312s"]
 [ext_resource type="Texture2D" uid="uid://bods50t24tr3l" path="res://ui/hud/shop_buttons/button5.png" id="23_0x3ol"]
 [ext_resource type="Texture2D" uid="uid://d4eaet8kypfjc" path="res://ui/hud/shop_buttons/button6.png" id="24_jblmp"]
@@ -242,7 +244,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -34.0
+offset_top = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -282,17 +284,18 @@ layout_mode = 2
 info = SubResource("Resource_w1dtt")
 
 [node name="ShopMenu" type="Control" parent="CanvasLayer"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -170.0
+offset_right = 170.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+[node name="ShopTabs" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -307,7 +310,50 @@ scale = Vector2(3.5, 3.5)
 texture = ExtResource("13_1b8o1")
 stretch_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+[node name="Button" parent="CanvasLayer/ShopMenu/ShopTabs" node_paths=PackedStringArray("selection") instance=ExtResource("16_sntpx")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 14.0
+icons = Array[Texture2D]([ExtResource("17_86dhx"), ExtResource("18_m6rlp")])
+selection = NodePath("../../Shops/Houses")
+startOn = true
+
+[node name="Button2" parent="CanvasLayer/ShopMenu/ShopTabs" node_paths=PackedStringArray("selection") instance=ExtResource("16_sntpx")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 17.4286
+offset_right = 14.0
+offset_bottom = 29.4286
+icons = Array[Texture2D]([ExtResource("20_n73jt"), ExtResource("21_58xd2")])
+selection = NodePath("../../Shops/Factories")
+
+[node name="Button3" parent="CanvasLayer/ShopMenu/ShopTabs" node_paths=PackedStringArray("selection") instance=ExtResource("16_sntpx")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 31.7143
+offset_right = 14.0
+offset_bottom = 43.7143
+icons = Array[Texture2D]([ExtResource("23_0x3ol"), ExtResource("24_jblmp")])
+selection = NodePath("../../Shops/Nature")
+
+[node name="Exit" parent="CanvasLayer/ShopMenu/ShopTabs" instance=ExtResource("16_sntpx")]
+visible = false
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 50.2857
+offset_right = 14.0
+offset_bottom = 62.2857
+icon = ExtResource("21_eah8y")
+script = null
+
+[node name="Shops" type="TextureRect" parent="CanvasLayer/ShopMenu"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -320,24 +366,65 @@ scale = Vector2(3.5, 3.5)
 texture = ExtResource("13_xvv6s")
 stretch_mode = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ShopMenu/TextureRect"]
+[node name="Factories" type="ScrollContainer" parent="CanvasLayer/ShopMenu/Shops"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/Shops/Factories"]
 layout_mode = 2
 
-[node name="Control" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource("15_yb04b")]
+[node name="Control" parent="CanvasLayer/ShopMenu/Shops/Factories/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+build = ExtResource("22_4312s")
+
+[node name="Houses" type="ScrollContainer" parent="CanvasLayer/ShopMenu/Shops"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/Shops/Houses"]
 layout_mode = 2
 
-[node name="Control2" parent="CanvasLayer/ShopMenu/TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource("15_yb04b")]
+[node name="Control2" parent="CanvasLayer/ShopMenu/Shops/Houses/VBoxContainer" instance=ExtResource("15_yb04b")]
 layout_mode = 2
+build = ExtResource("19_7waw3")
+
+[node name="Nature" type="ScrollContainer" parent="CanvasLayer/ShopMenu/Shops"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/Shops/Nature"]
+layout_mode = 2
+
+[node name="Control3" parent="CanvasLayer/ShopMenu/Shops/Nature/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+build = ExtResource("25_a2yq5")
+
+[node name="Control4" parent="CanvasLayer/ShopMenu/Shops/Nature/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+build = ExtResource("19_3hpsi")
 
 [node name="TestMenu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -378,20 +465,18 @@ alignment = 1
 [node name="Button" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
 layout_mode = 2
 icons = Array[Texture2D]([ExtResource("17_86dhx"), ExtResource("18_m6rlp")])
-selection = ExtResource("19_7waw3")
 
 [node name="Button2" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
 layout_mode = 2
 icons = Array[Texture2D]([ExtResource("20_n73jt"), ExtResource("21_58xd2")])
-selection = ExtResource("22_4312s")
 
 [node name="Button3" parent="CanvasLayer/TestMenu/GridContainer" instance=ExtResource("16_sntpx")]
 layout_mode = 2
 icons = Array[Texture2D]([ExtResource("23_0x3ol"), ExtResource("24_jblmp")])
-selection = ExtResource("25_a2yq5")
 
 [connection signal="gui_input" from="CanvasLayer/Control2" to="Camera2D" method="gui"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]
 [connection signal="button_up" from="CanvasLayer/DestroyButtons/Destroy" to="." method="Destroy"]
 [connection signal="button_up" from="CanvasLayer/DestroyButtons/Nah" to="." method="CloseInfoPanel"]
+[connection signal="button_up" from="CanvasLayer/ShopMenu/ShopTabs/Exit" to="." method="CloseShop"]
