@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=33 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://orpemhyoru0g" path="res://ui/button/button1.png" id="7_rk1sc"]
 [ext_resource type="PackedScene" uid="uid://7l6luawghest" path="res://objects/map/portion_creator.tscn" id="9_nfare"]
 [ext_resource type="PackedScene" uid="uid://bsimhrk7034al" path="res://ui/hud/resource_thing.tscn" id="11_afba5"]
-[ext_resource type="Script" path="res://objects/utils/price.gd" id="12_x8yyw"]
 [ext_resource type="Texture2D" uid="uid://eihh67o8v3ub" path="res://ui/hud/shop_bar.png" id="13_1b8o1"]
 [ext_resource type="Texture2D" uid="uid://s6by44iilfv4" path="res://ui/hud/shop.png" id="13_xvv6s"]
 [ext_resource type="PackedScene" uid="uid://d3k5x1yyi4bip" path="res://ui/hud/shop_option.tscn" id="15_yb04b"]
@@ -27,26 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://bods50t24tr3l" path="res://ui/hud/shop_buttons/button5.png" id="23_0x3ol"]
 [ext_resource type="Texture2D" uid="uid://d4eaet8kypfjc" path="res://ui/hud/shop_buttons/button6.png" id="24_jblmp"]
 [ext_resource type="Resource" uid="uid://puhphvvvs1jj" path="res://objects/building/res/tree.tres" id="25_a2yq5"]
+[ext_resource type="Texture2D" uid="uid://bix6snixmusae" path="res://ui/hud/powers_hud/buy_panel.png" id="27_77lul"]
+[ext_resource type="PackedScene" uid="uid://k4tct6knwcqi" path="res://ui/hud/powers_hud/power_option.tscn" id="27_e1a6l"]
+[ext_resource type="Texture2D" uid="uid://cw6wffu1lsjq5" path="res://ui/hud/powers_hud/powers_button.png" id="27_pwm5w"]
+[ext_resource type="Resource" uid="uid://cxb3jhl7wb3px" path="res://objects/utils/shops/powers/wood_cutter.tres" id="28_2hse4"]
+[ext_resource type="PackedScene" uid="uid://b7ijdtdfu66my" path="res://ui/hud/powers_hud/power_price_label.tscn" id="28_86oeb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e21qc"]
 texture = ExtResource("7_2ni1f")
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
-
-[sub_resource type="Resource" id="Resource_lbj5h"]
-script = ExtResource("12_x8yyw")
-type = 0
-value = 5
-
-[sub_resource type="Resource" id="Resource_004hi"]
-script = ExtResource("12_x8yyw")
-type = 1
-value = 0
-
-[sub_resource type="Resource" id="Resource_w1dtt"]
-script = ExtResource("12_x8yyw")
-type = 2
-value = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ewkbg")
@@ -273,15 +262,8 @@ alignment = 1
 
 [node name="ResourceThing" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
 layout_mode = 2
-info = SubResource("Resource_lbj5h")
-
-[node name="ResourceThing2" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_004hi")
-
-[node name="ResourceThing7" parent="CanvasLayer/Control/GridContainer/HFlowContainer" instance=ExtResource("11_afba5")]
-layout_mode = 2
-info = SubResource("Resource_w1dtt")
+value = 15
+type = 2
 
 [node name="ShopMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -474,9 +456,150 @@ icons = Array[Texture2D]([ExtResource("20_n73jt"), ExtResource("21_58xd2")])
 layout_mode = 2
 icons = Array[Texture2D]([ExtResource("23_0x3ol"), ExtResource("24_jblmp")])
 
+[node name="PowersShop" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_right = -9.0
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/PowersShop"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -31.0
+offset_right = 66.0
+offset_bottom = 31.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+icon = ExtResource("27_pwm5w")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="PowerBuy" type="TextureRect" parent="CanvasLayer/PowersShop"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 85.0
+offset_right = -77.0
+offset_bottom = -222.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("27_77lul")
+stretch_mode = 1
+
+[node name="Prices" type="ScrollContainer" parent="CanvasLayer/PowersShop/PowerBuy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = -3.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PowersShop/PowerBuy/Prices"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Control" parent="CanvasLayer/PowersShop/PowerBuy/Prices/VBoxContainer" instance=ExtResource("28_86oeb")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PowersShop/PowerBuy"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -21.5
+offset_right = 46.0
+offset_bottom = -13.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("4_awn8r")
+theme_override_colors/font_color = Color(0.258824, 0.141176, 0.2, 1)
+theme_override_font_sizes/font_size = 8
+text = "1123"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/PowersShop/PowerBuy"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 37.0
+offset_right = 17.0
+offset_bottom = 54.0
+focus_mode = 0
+icon = ExtResource("5_5hqp3")
+flat = true
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/PowersShop/PowerBuy"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 37.4286
+offset_right = 34.0
+offset_bottom = 54.4286
+focus_mode = 0
+icon = ExtResource("6_uami6")
+flat = true
+icon_alignment = 1
+
+[node name="Shops" type="TextureRect" parent="CanvasLayer/PowersShop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -120.0
+offset_bottom = -257.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("13_xvv6s")
+stretch_mode = 1
+
+[node name="Powers" type="ScrollContainer" parent="CanvasLayer/PowersShop/Shops"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PowersShop/Shops/Powers"]
+layout_mode = 2
+
+[node name="Control" parent="CanvasLayer/PowersShop/Shops/Powers/VBoxContainer" instance=ExtResource("27_e1a6l")]
+layout_mode = 2
+power = ExtResource("28_2hse4")
+
 [connection signal="gui_input" from="CanvasLayer/Control2" to="Camera2D" method="gui"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Nah" to="." method="CloseBuildPanel"]
 [connection signal="button_up" from="CanvasLayer/DestroyButtons/Destroy" to="." method="Destroy"]
 [connection signal="button_up" from="CanvasLayer/DestroyButtons/Nah" to="." method="CloseInfoPanel"]
 [connection signal="button_up" from="CanvasLayer/ShopMenu/ShopTabs/Exit" to="." method="CloseShop"]
+[connection signal="button_up" from="CanvasLayer/PowersShop/Button" to="." method="CheckPowerShop"]
+[connection signal="button_up" from="CanvasLayer/PowersShop/PowerBuy/Button" to="." method="BuyPower"]
+[connection signal="button_up" from="CanvasLayer/PowersShop/PowerBuy/Button2" to="." method="CloseConfirmPowerBuy"]
