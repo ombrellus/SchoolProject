@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://7l6luawghest"]
+[gd_scene load_steps=12 format=3 uid="uid://7l6luawghest"]
 
 [ext_resource type="Script" path="res://objects/map/portion_creator.gd" id="1_54xa3"]
 [ext_resource type="Script" path="res://objects/map/portion_info.gd" id="2_bsf7u"]
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="2_u8b2w"]
-[ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_7dirp"]
 [ext_resource type="Texture2D" uid="uid://bojkaqp6aanu8" path="res://ui/button/maker.png" id="4_cy5j8"]
-[ext_resource type="Texture2D" uid="uid://rm3yy8cn8sjm" path="res://ui/icons/coins.png" id="6_f7mrm"]
+[ext_resource type="Texture2D" uid="uid://b51b1ji308xga" path="res://ui/hud/maker_prices.png" id="5_rfafu"]
+[ext_resource type="Texture2D" uid="uid://hmnn12iad5da" path="res://ui/button/button2.png" id="6_4h7tr"]
+[ext_resource type="Texture2D" uid="uid://dr12aecipxjgr" path="res://ui/button/button3.png" id="7_jrfky"]
 
 [sub_resource type="Resource" id="Resource_0ubh0"]
 script = ExtResource("2_u8b2w")
@@ -21,6 +22,9 @@ cost = Array[ExtResource("2_u8b2w")]([SubResource("Resource_0ubh0")])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdmkc"]
 size = Vector2(24, 26)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn5qj"]
+size = Vector2(9.33333, 8)
+
 [node name="PortionCreator" type="Node2D"]
 script = ExtResource("1_54xa3")
 info = SubResource("Resource_ghfig")
@@ -33,39 +37,49 @@ texture = ExtResource("4_cy5j8")
 [node name="Point" type="Node2D" parent="."]
 position = Vector2(-30, -30)
 
-[node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
-offset_left = -50.0
-offset_top = 30.0
-offset_right = 122.0
-offset_bottom = 53.0
-scale = Vector2(0.8, 0.8)
-theme = ExtResource("4_7dirp")
-theme_override_font_sizes/font_size = 8
-text = "Not enough resources"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 6.0
-offset_top = -4.0
-offset_right = 49.0
-offset_bottom = 7.0
-scale = Vector2(0.8, 0.8)
-theme = ExtResource("4_7dirp")
-theme_override_font_sizes/font_size = 8
-text = "50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_vdmkc")
 
-[node name="Coins" type="Sprite2D" parent="."]
-position = Vector2(12, -1)
-texture = ExtResource("6_f7mrm")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(52, 20)
+texture = ExtResource("5_rfafu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sprite2D2"]
+offset_left = -13.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sprite2D2/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(-56, -10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_4h7tr")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D2/Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Button/Area2D"]
+position = Vector2(-4.76837e-07, 0)
+shape = SubResource("RectangleShape2D_mn5qj")
+
+[node name="Button3" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(-56, 10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_jrfky")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D2/Button3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Button3/Area2D"]
+position = Vector2(-4.76837e-07, 0)
+shape = SubResource("RectangleShape2D_mn5qj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="input_event" from="Sprite2D2/Button/Area2D" to="." method="yes_button"]
+[connection signal="input_event" from="Sprite2D2/Button3/Area2D" to="." method="no_button"]

@@ -21,9 +21,6 @@ func bop(am:float, delay:float = 0.0):
 	tween.tween_property($Sprite2D,"scale",Vector2(1.5,1.5),0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 func create():
-	if not Global.mainGame.CheckPrices(info.cost):
-		displayNoCah()
-		return
 	var portion = preload("res://objects/map/map_portion.tscn").instantiate()
 	portion.global_position = $Point.global_position
 	portion.info = info
@@ -31,8 +28,38 @@ func create():
 	get_parent().add_child(portion)
 	queue_free()
 
+func _ready():
+	for i in info.cost:
+		var lex = preload("res://ui/hud/powers_hud/power_price_label.tscn").instantiate()
+		lex.get_node("TextureRect").texture = Global.resourceIcons[i.type]
+		lex.get_node("Label").text = str(i.value)
+		$Sprite2D2/ScrollContainer/VBoxContainer.add_child(lex)
+
+func buyMenu():
+	$Sprite2D2.visible = true
+	$Sprite2D2/Button.modulate = Color(1,1,1,1)
+	$Sprite2D2/Button/Area2D/CollisionShape2D.disabled = false
+	if not Global.mainGame.CheckPrices(info.cost):
+		$Sprite2D2/Button/Area2D/CollisionShape2D.disabled = true
+		$Sprite2D2/Button.modulate = Color(1,1,1,0.5)
+
+func closeMenu():
+	$Sprite2D2.visible = false
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenTouch:
 		if event.is_released():
+			bop(1.7)
+			buyMenu()
+
+
+func yes_button(viewport, event, shape_idx):
+	if event is InputEventScreenTouch:
+		if event.is_released():
 			create()
+
+
+func no_button(viewport, event, shape_idx):
+	if event is InputEventScreenTouch:
+		if event.is_released():
+			closeMenu()

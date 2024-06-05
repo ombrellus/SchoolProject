@@ -132,6 +132,7 @@ func OpenConfirmPowerBuy(selection:Control):
 		if i.value > heldResources[i.type]:
 			lex.get_node("Label").add_theme_color_override("font_color",Color(0.875, 0.243, 0.137))
 			$CanvasLayer/PowersShop/PowerBuy/Button.disabled = true
+			
 		$CanvasLayer/PowersShop/PowerBuy/Prices/VBoxContainer.add_child(lex)
 		
 		
