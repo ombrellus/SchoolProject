@@ -117,6 +117,7 @@ func CloseConfirmPowerBuy():
 func BuyPower():
 	Spend(selectedPower.power.cost)
 	Global.boughtPowers[selectedPower.power.power] = true
+	selectedPower.Bought()
 	selectedPower.queue_free()
 	CloseConfirmPowerBuy()
 

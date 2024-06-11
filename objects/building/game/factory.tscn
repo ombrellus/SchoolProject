@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1tirmcwbnn5"]
 
 [ext_resource type="Script" path="res://objects/building/basic_producer.gd" id="1_gchta"]
-[ext_resource type="Resource" uid="uid://ciaiwgurjmlqf" path="res://objects/building/res/factory_info.tres" id="2_g0ypk"]
+[ext_resource type="Resource" uid="uid://ciaiwgurjmlqf" path="res://objects/building/infos/factory_info.tres" id="2_g0ypk"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="2_ldel5"]
 [ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="3_b6ncq"]
 [ext_resource type="PackedScene" uid="uid://dhpnyxxsrj2jw" path="res://objects/utils/buildings/producer.tscn" id="5_grxoo"]

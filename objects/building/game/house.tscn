@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://o5bi418djcrm"]
 
 [ext_resource type="Script" path="res://objects/building/basic_producer.gd" id="1_j0mjw"]
-[ext_resource type="Resource" uid="uid://b3x22qtiwvsyy" path="res://objects/building/res/house_info.tres" id="2_c3ye6"]
+[ext_resource type="Resource" uid="uid://b3x22qtiwvsyy" path="res://objects/building/infos/house_info.tres" id="2_c3ye6"]
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="2_c425v"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_n1ti6"]
 [ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="4_l5tam"]

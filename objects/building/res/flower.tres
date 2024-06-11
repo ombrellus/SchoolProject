@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=9 format=3 uid="uid://b5vgp3np86vhw"]
+
+[ext_resource type="Texture2D" uid="uid://cwiqxn66oij8e" path="res://objects/building/sprites/building20.png" id="1_qo1o8"]
+[ext_resource type="Texture2D" uid="uid://4uwe30rg6uti" path="res://objects/building/sprites/building21.png" id="2_jjpbp"]
+[ext_resource type="Texture2D" uid="uid://bbf3knhd0fioj" path="res://objects/building/sprites/building22.png" id="3_vqdoi"]
+[ext_resource type="PackedScene" uid="uid://bqqsfae8gor2n" path="res://objects/building/game/flower.tscn" id="4_nu62b"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="5_ylcqh"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="6_yqofe"]
+
+[sub_resource type="Resource" id="Resource_wlslh"]
+script = ExtResource("5_ylcqh")
+type = 2
+value = 75
+
+[sub_resource type="Resource" id="Resource_spjf0"]
+script = ExtResource("5_ylcqh")
+type = 0
+value = 15
+
+[resource]
+script = ExtResource("6_yqofe")
+name = "Flower"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("1_qo1o8"), ExtResource("2_jjpbp"), ExtResource("3_vqdoi")])
+desc = "Looks pretty"
+prices = Array[ExtResource("5_ylcqh")]([SubResource("Resource_wlslh"), SubResource("Resource_spjf0")])
+groundType = 0
+packed = ExtResource("4_nu62b")

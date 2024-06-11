@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ur7w3c42qc6"]
 
 [ext_resource type="Script" path="res://objects/building/tilecreator_building.gd" id="1_n7cbj"]
-[ext_resource type="Resource" uid="uid://bo1fjuttjeau8" path="res://objects/building/res/rock_info.tres" id="2_kwa7k"]
+[ext_resource type="Resource" uid="uid://bo1fjuttjeau8" path="res://objects/building/infos/rock_info.tres" id="2_kwa7k"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_wqxbq"]
 [ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="4_37d0d"]
 
