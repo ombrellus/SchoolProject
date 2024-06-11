@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=7 format=3 uid="uid://baf42ltitenu7"]
+
+[ext_resource type="Texture2D" uid="uid://27qyt1ykjqcg" path="res://objects/building/sprites/building17.png" id="1_sbrff"]
+[ext_resource type="PackedScene" uid="uid://btvn48fddnghc" path="res://objects/building/game/gold_rock.tscn" id="2_lc3if"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="3_jhitc"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="4_qy42a"]
+
+[sub_resource type="Resource" id="Resource_wlslh"]
+script = ExtResource("3_jhitc")
+type = 2
+value = 300
+
+[sub_resource type="Resource" id="Resource_5m18b"]
+script = ExtResource("3_jhitc")
+type = 3
+value = 50
+
+[resource]
+script = ExtResource("4_qy42a")
+name = "Gold rock"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("1_sbrff")])
+desc = "Can be broken for gold"
+prices = Array[ExtResource("3_jhitc")]([SubResource("Resource_wlslh"), SubResource("Resource_5m18b")])
+groundType = 3
+packed = ExtResource("2_lc3if")

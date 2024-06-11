@@ -30,8 +30,8 @@ func _generate():
 			if sea >= 0.17:
 				set_cell(0,Vector2i(x,y),get_cell_source_id(0,Vector2i(x,y)),Vector2i(3,0))
 				SetTilesAround(Vector2i(x,y),Vector2i(2,0))
-	if info.hasTrees: GenerateDet(preload("res://objects/building/res/tree.tres"),Vector2i(6,12))
-	if info.hasRocks: GenerateDet(preload("res://objects/building/res/rock.tres"),Vector2i(3,5))
+	for i in info.elements:
+		GenerateDet(i.build,Vector2i(i.min,i.max))
 
 func GenerateDet(build:BuildingRes,ra:Vector2i):
 	var cells:Array[Vector2i]

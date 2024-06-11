@@ -1,14 +1,18 @@
-[gd_scene load_steps=36 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=49 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="3_4sbsh"]
 [ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="3_tlhk6"]
 [ext_resource type="Theme" uid="uid://cml1qf85s2paw" path="res://objects/utils/theme.tres" id="4_awn8r"]
 [ext_resource type="Script" path="res://objects/utils/cool_camera.gd" id="4_eegbr"]
+[ext_resource type="Script" path="res://objects/map/map_element.gd" id="4_un0dt"]
 [ext_resource type="Texture2D" uid="uid://hmnn12iad5da" path="res://ui/button/button2.png" id="5_5hqp3"]
 [ext_resource type="Texture2D" uid="uid://dr12aecipxjgr" path="res://ui/button/button3.png" id="6_uami6"]
 [ext_resource type="Texture2D" uid="uid://bqrnlhuv4knu1" path="res://ui/backk.png" id="7_2ni1f"]
+[ext_resource type="Resource" uid="uid://baf42ltitenu7" path="res://objects/building/res/gold_rock.tres" id="7_eja4d"]
 [ext_resource type="Texture2D" uid="uid://orpemhyoru0g" path="res://ui/button/button1.png" id="7_rk1sc"]
+[ext_resource type="Script" path="res://objects/map/portion_info.gd" id="8_ul8sf"]
 [ext_resource type="PackedScene" uid="uid://7l6luawghest" path="res://objects/map/portion_creator.tscn" id="9_nfare"]
 [ext_resource type="PackedScene" uid="uid://bsimhrk7034al" path="res://ui/hud/resource_thing.tscn" id="11_afba5"]
 [ext_resource type="Texture2D" uid="uid://eihh67o8v3ub" path="res://ui/hud/shop_bar.png" id="13_1b8o1"]
@@ -31,6 +35,49 @@
 [ext_resource type="Texture2D" uid="uid://cw6wffu1lsjq5" path="res://ui/hud/powers_hud/powers_button.png" id="27_pwm5w"]
 [ext_resource type="Resource" uid="uid://cxb3jhl7wb3px" path="res://objects/utils/shops/powers/wood_cutter.tres" id="28_2hse4"]
 [ext_resource type="PackedScene" uid="uid://b7ijdtdfu66my" path="res://ui/hud/powers_hud/power_price_label.tscn" id="28_86oeb"]
+[ext_resource type="Resource" uid="uid://cufgdv41pg08r" path="res://objects/utils/shops/powers/stone_cutter.tres" id="31_nl7l5"]
+[ext_resource type="Resource" uid="uid://c2tfq0eymdjn1" path="res://objects/utils/shops/powers/pottery.tres" id="37_0v8rp"]
+
+[sub_resource type="Resource" id="Resource_thrkg"]
+script = ExtResource("3_4sbsh")
+type = 2
+value = 100
+
+[sub_resource type="Resource" id="Resource_2t8xk"]
+script = ExtResource("3_4sbsh")
+type = 3
+value = 10
+
+[sub_resource type="Resource" id="Resource_74rtb"]
+script = ExtResource("3_4sbsh")
+type = 1
+value = 50
+
+[sub_resource type="Resource" id="Resource_g546n"]
+script = ExtResource("4_un0dt")
+build = ExtResource("25_a2yq5")
+max = 6
+min = 4
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_kao8u"]
+script = ExtResource("4_un0dt")
+build = ExtResource("19_3hpsi")
+max = 3
+min = 3
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_xbeld"]
+script = ExtResource("4_un0dt")
+build = ExtResource("7_eja4d")
+max = 2
+min = 2
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_414nf"]
+script = ExtResource("8_ul8sf")
+elements = Array[ExtResource("4_un0dt")]([SubResource("Resource_g546n"), SubResource("Resource_kao8u"), SubResource("Resource_xbeld")])
+cost = Array[ExtResource("3_4sbsh")]([SubResource("Resource_thrkg"), SubResource("Resource_2t8xk"), SubResource("Resource_74rtb")])
 
 [sub_resource type="Gradient" id="Gradient_5bgm7"]
 offsets = PackedFloat32Array(0, 0.162602, 0.861789, 1)
@@ -74,18 +121,22 @@ position = Vector2(30, -70)
 
 [node name="PortionCreator7" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(-70, -70)
+info = SubResource("Resource_414nf")
 
 [node name="PortionCreator8" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(130, -70)
+info = SubResource("Resource_414nf")
 
 [node name="PortionCreator4" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(30, 130)
 
 [node name="PortionCreator5" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(130, 130)
+info = SubResource("Resource_414nf")
 
 [node name="PortionCreator6" parent="BuildZone" instance=ExtResource("9_nfare")]
 position = Vector2(-70, 130)
+info = SubResource("Resource_414nf")
 
 [node name="MapPortion" parent="BuildZone" instance=ExtResource("1_foh0p")]
 
@@ -618,9 +669,17 @@ vertical_scroll_mode = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PowersShop/Shops/Powers"]
 layout_mode = 2
 
+[node name="Control2" parent="CanvasLayer/PowersShop/Shops/Powers/VBoxContainer" instance=ExtResource("27_e1a6l")]
+layout_mode = 2
+power = ExtResource("31_nl7l5")
+
 [node name="Control" parent="CanvasLayer/PowersShop/Shops/Powers/VBoxContainer" instance=ExtResource("27_e1a6l")]
 layout_mode = 2
 power = ExtResource("28_2hse4")
+
+[node name="Control3" parent="CanvasLayer/PowersShop/Shops/Powers/VBoxContainer" instance=ExtResource("27_e1a6l")]
+layout_mode = 2
+power = ExtResource("37_0v8rp")
 
 [connection signal="gui_input" from="CanvasLayer/Control2" to="Camera2D" method="gui"]
 [connection signal="button_up" from="CanvasLayer/BuildButtons/Build" to="." method="Build"]

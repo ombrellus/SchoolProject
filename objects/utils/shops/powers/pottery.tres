@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PowerRes" load_steps=5 format=3 uid="uid://c2tfq0eymdjn1"]
+
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="1_13pu8"]
+[ext_resource type="Texture2D" uid="uid://djxns0776t47o" path="res://ui/hud/powers_hud/icons/pottery.png" id="2_7px1o"]
+[ext_resource type="Script" path="res://objects/utils/shops/power_res.gd" id="3_ueh8h"]
+
+[sub_resource type="Resource" id="Resource_2uv74"]
+script = ExtResource("1_13pu8")
+type = 2
+value = 500
+
+[resource]
+script = ExtResource("3_ueh8h")
+icon = ExtResource("2_7px1o")
+name = "Pottery"
+desc = "Let's you plant colorful flowers"
+cost = Array[ExtResource("1_13pu8")]([SubResource("Resource_2uv74")])
+power = 2

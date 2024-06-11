@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="PowerRes" load_steps=6 format=3 uid="uid://cufgdv41pg08r"]
+
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="1_h70ss"]
+[ext_resource type="Texture2D" uid="uid://dq7icttupy4bd" path="res://ui/hud/powers_hud/icons/stone_cutter.png" id="2_2ivun"]
+[ext_resource type="Script" path="res://objects/utils/shops/power_res.gd" id="3_6b4jk"]
+
+[sub_resource type="Resource" id="Resource_2f4ha"]
+script = ExtResource("1_h70ss")
+type = 2
+value = 200
+
+[sub_resource type="Resource" id="Resource_5fusi"]
+script = ExtResource("1_h70ss")
+type = 0
+value = 150
+
+[resource]
+script = ExtResource("3_6b4jk")
+icon = ExtResource("2_2ivun")
+name = "Stone cutter"
+desc = "Let's you be able to break rock into a stone tile"
+cost = Array[ExtResource("1_h70ss")]([SubResource("Resource_2f4ha"), SubResource("Resource_5fusi")])
+power = 1

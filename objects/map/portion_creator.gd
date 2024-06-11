@@ -32,6 +32,8 @@ func _ready():
 	for i in info.cost:
 		var lex = preload("res://ui/hud/powers_hud/power_price_label.tscn").instantiate()
 		lex.get_node("TextureRect").texture = Global.resourceIcons[i.type]
+		lex.set_meta("type",i.type)
+		lex.set_meta("value",i.value)
 		lex.get_node("Label").text = str(i.value)
 		$Sprite2D2/ScrollContainer/VBoxContainer.add_child(lex)
 
@@ -39,6 +41,10 @@ func buyMenu():
 	$Sprite2D2.visible = true
 	$Sprite2D2/Button.modulate = Color(1,1,1,1)
 	$Sprite2D2/Button/Area2D/CollisionShape2D.disabled = false
+	for i in $Sprite2D2/ScrollContainer/VBoxContainer.get_children():
+		if Global.mainGame.heldResources[i.get_meta("type")] < i.get_meta("value"):
+			i.get_node("Label").add_theme_color_override("font_color",Color(0.875, 0.243, 0.137))
+		else: i.get_node("Label").add_theme_color_override("font_color",Color(1, 1, 1))
 	if not Global.mainGame.CheckPrices(info.cost):
 		$Sprite2D2/Button/Area2D/CollisionShape2D.disabled = true
 		$Sprite2D2/Button.modulate = Color(1,1,1,0.5)

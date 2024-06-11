@@ -17,6 +17,8 @@ var priceTag:PackedScene = preload("res://ui/button/price_tag.tscn")
 var heldResources:Dictionary = {
 	Global.Resources.WOOD : 0,
 	Global.Resources.ROCK : 0,
+	Global.Resources.GOLD : 0,
+	Global.Resources.WATER : 0,
 	Global.Resources.COIN : 15
 }
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8k8tg3aevyp0"]
+[gd_scene load_steps=12 format=3 uid="uid://b8k8tg3aevyp0"]
 
 [ext_resource type="Texture2D" uid="uid://bfmsyq6b3ioa6" path="res://background/tiles.png" id="1_armw6"]
 [ext_resource type="Script" path="res://objects/map/map_portion.gd" id="2_lejah"]
 [ext_resource type="Script" path="res://objects/utils/price.gd" id="3_1dc3t"]
 [ext_resource type="Script" path="res://objects/map/portion_info.gd" id="4_4f3m6"]
+[ext_resource type="Script" path="res://objects/map/map_element.gd" id="4_c4ny8"]
+[ext_resource type="Resource" uid="uid://puhphvvvs1jj" path="res://objects/building/res/tree.tres" id="5_uwac6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkpt2"]
 texture = ExtResource("1_armw6")
@@ -39,10 +41,16 @@ sources/0 = SubResource("TileSetAtlasSource_kkpt2")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_c7vqu"]
 frequency = 0.1042
 
+[sub_resource type="Resource" id="Resource_jvvwj"]
+script = ExtResource("4_c4ny8")
+build = ExtResource("5_uwac6")
+max = 12
+min = 6
+chance = 1.0
+
 [sub_resource type="Resource" id="Resource_x78yr"]
 script = ExtResource("4_4f3m6")
-hasTrees = true
-hasRocks = false
+elements = Array[ExtResource("4_c4ny8")]([SubResource("Resource_jvvwj")])
 cost = Array[ExtResource("3_1dc3t")]([])
 
 [node name="MapPortion" type="TileMap"]

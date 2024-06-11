@@ -1,6 +1,6 @@
 extends Node
 
-enum Resources {WOOD,ROCK,COIN,GOLD,DIAMOND}
+enum Resources {WOOD,ROCK,COIN,GOLD,DIAMOND,WATER}
 enum Grounds {NATURE,MANMADE,WATER,SOLID,ALL}
 enum BuildingType {RESOURCE,PRODUCER,DECORATION,MISC}
 
@@ -23,5 +23,6 @@ var resourceIcons:Dictionary={
 	Resources.WOOD: preload("res://ui/icons/logs.png"),
 	Resources.ROCK: preload("res://ui/icons/rocks.png"),
 	Resources.COIN: preload("res://ui/icons/coins.png"),
-	Resources.GOLD: preload("res://ui/icons/gold.png")
+	Resources.GOLD: preload("res://ui/icons/gold.png"),
+	Resources.WATER: preload("res://ui/icons/water.png")
 }
