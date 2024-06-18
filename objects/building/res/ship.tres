@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=9 format=3 uid="uid://cqm2712rbpo3t"]
+
+[ext_resource type="Texture2D" uid="uid://bgcg72dyc00rt" path="res://objects/building/sprites/building11.png" id="3_3ayo7"]
+[ext_resource type="Texture2D" uid="uid://drjlb74fprlyy" path="res://objects/building/sprites/building12.png" id="4_d6022"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="4_mar4q"]
+[ext_resource type="Texture2D" uid="uid://c2hlvm6q34ymi" path="res://objects/building/sprites/building13.png" id="5_38n35"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="5_jeihp"]
+[ext_resource type="PackedScene" uid="uid://jgy60uyimdfg" path="res://objects/building/game/ship.tscn" id="6_1c47e"]
+
+[sub_resource type="Resource" id="Resource_wlslh"]
+script = ExtResource("4_mar4q")
+type = 0
+value = 35
+
+[sub_resource type="Resource" id="Resource_n1mm8"]
+script = ExtResource("4_mar4q")
+type = 5
+value = 25
+
+[resource]
+script = ExtResource("5_jeihp")
+name = "Ship"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("3_3ayo7"), ExtResource("4_d6022"), ExtResource("5_38n35")])
+desc = "A simple ship, doesn't need much, sometimes can find gold"
+prices = Array[ExtResource("4_mar4q")]([SubResource("Resource_wlslh"), SubResource("Resource_n1mm8")])
+groundType = 2
+packed = ExtResource("6_1c47e")

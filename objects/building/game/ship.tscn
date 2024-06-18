@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://jgy60uyimdfg"]
+
+[ext_resource type="Script" path="res://objects/building/basic_producer.gd" id="1_5xhnb"]
+[ext_resource type="Texture2D" uid="uid://b8r33swnedvjo" path="res://objects/building/sprites/building1.png" id="2_7yi6w"]
+[ext_resource type="Resource" uid="uid://cnguxou7tv3bk" path="res://objects/building/infos/ship_info.tres" id="2_wal2v"]
+[ext_resource type="PackedScene" uid="uid://dp3m3w40cbvfm" path="res://objects/utils/buildings/all_the_building_shit.tscn" id="3_dg0ub"]
+[ext_resource type="PackedScene" uid="uid://dhpnyxxsrj2jw" path="res://objects/utils/buildings/producer.tscn" id="4_ln5ya"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="5_lfsrg"]
+
+[sub_resource type="Resource" id="Resource_ryew5"]
+script = ExtResource("5_lfsrg")
+type = 2
+value = 1
+
+[sub_resource type="Resource" id="Resource_qch86"]
+script = ExtResource("5_lfsrg")
+type = 3
+value = 1
+
+[node name="BasicBuilding" type="Node2D"]
+script = ExtResource("1_5xhnb")
+info = ExtResource("2_wal2v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("2_7yi6w")
+offset = Vector2(0, -5)
+
+[node name="AllTheBuildingShit" parent="." instance=ExtResource("3_dg0ub")]
+
+[node name="Productions" type="Node" parent="."]
+
+[node name="producer" parent="Productions" instance=ExtResource("4_ln5ya")]
+maxSpeed = 5.0
+produces = SubResource("Resource_ryew5")
+
+[node name="producer2" parent="Productions" instance=ExtResource("4_ln5ya")]
+maxSpeed = 15.0
+produces = SubResource("Resource_qch86")

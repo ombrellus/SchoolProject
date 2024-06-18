@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dhqu6ni55ngdu"]
+[gd_scene load_steps=53 format=3 uid="uid://dhqu6ni55ngdu"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ewkbg"]
 [ext_resource type="PackedScene" uid="uid://b8k8tg3aevyp0" path="res://objects/map/map_portion.tscn" id="1_foh0p"]
@@ -36,7 +36,9 @@
 [ext_resource type="Resource" uid="uid://cxb3jhl7wb3px" path="res://objects/utils/shops/powers/wood_cutter.tres" id="28_2hse4"]
 [ext_resource type="PackedScene" uid="uid://b7ijdtdfu66my" path="res://ui/hud/powers_hud/power_price_label.tscn" id="28_86oeb"]
 [ext_resource type="Resource" uid="uid://cy3lnbk7pxogn" path="res://objects/building/res/water_tank.tres" id="30_mxqiv"]
+[ext_resource type="Resource" uid="uid://bm2rkefja8b8h" path="res://objects/building/res/golden_factory.tres" id="31_gla7f"]
 [ext_resource type="Resource" uid="uid://cufgdv41pg08r" path="res://objects/utils/shops/powers/stone_cutter.tres" id="31_nl7l5"]
+[ext_resource type="Resource" uid="uid://cqm2712rbpo3t" path="res://objects/building/res/ship.tres" id="32_k8qos"]
 [ext_resource type="Resource" uid="uid://c2tfq0eymdjn1" path="res://objects/utils/shops/powers/pottery.tres" id="37_0v8rp"]
 [ext_resource type="Resource" uid="uid://b5vgp3np86vhw" path="res://objects/building/res/flower.tres" id="38_0yoge"]
 
@@ -447,6 +449,10 @@ build = ExtResource("22_4312s")
 layout_mode = 2
 build = ExtResource("30_mxqiv")
 
+[node name="Control3" parent="CanvasLayer/ShopMenu/Shops/Factories/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+build = ExtResource("31_gla7f")
+
 [node name="Houses" type="ScrollContainer" parent="CanvasLayer/ShopMenu/Shops"]
 layout_mode = 1
 anchors_preset = 15
@@ -463,6 +469,10 @@ layout_mode = 2
 [node name="Control2" parent="CanvasLayer/ShopMenu/Shops/Houses/VBoxContainer" instance=ExtResource("15_yb04b")]
 layout_mode = 2
 build = ExtResource("19_7waw3")
+
+[node name="Control3" parent="CanvasLayer/ShopMenu/Shops/Houses/VBoxContainer" instance=ExtResource("15_yb04b")]
+layout_mode = 2
+build = ExtResource("32_k8qos")
 
 [node name="Nature" type="ScrollContainer" parent="CanvasLayer/ShopMenu/Shops"]
 visible = false

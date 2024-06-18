@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingRes" load_steps=7 format=3 uid="uid://bm2rkefja8b8h"]
+
+[ext_resource type="Texture2D" uid="uid://db5a6w7d8ayhd" path="res://objects/building/sprites/building15.png" id="1_l1s2s"]
+[ext_resource type="PackedScene" uid="uid://b7e21ctmnx8sp" path="res://objects/building/game/golden_factory.tscn" id="2_hm1le"]
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="3_t3ob7"]
+[ext_resource type="Script" path="res://objects/building/building_res.gd" id="4_d0iwi"]
+
+[sub_resource type="Resource" id="Resource_psaro"]
+script = ExtResource("3_t3ob7")
+type = 2
+value = 50
+
+[sub_resource type="Resource" id="Resource_uttgm"]
+script = ExtResource("3_t3ob7")
+type = 3
+value = 15
+
+[resource]
+script = ExtResource("4_d0iwi")
+name = "Gold factory"
+size = Vector2i(1, 1)
+icon = Array[Texture2D]([ExtResource("1_l1s2s")])
+desc = "An upgraded factory that can collect gold from gold mineral"
+prices = Array[ExtResource("3_t3ob7")]([SubResource("Resource_psaro"), SubResource("Resource_uttgm")])
+groundType = 3
+packed = ExtResource("2_hm1le")

@@ -7,7 +7,7 @@
 
 [node name="BasicBuilding" type="Node2D"]
 script = ExtResource("1_dmobx")
-newTile = Vector2i(4, 0)
+newTile = Vector2i(5, 0)
 info = ExtResource("2_vkeju")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

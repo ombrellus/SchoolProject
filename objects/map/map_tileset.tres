@@ -1,0 +1,37 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dmjg0bxv3pmcp"]
+
+[ext_resource type="Texture2D" uid="uid://bfmsyq6b3ioa6" path="res://background/tiles.png" id="1_sf6ut"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkpt2"]
+texture = ExtResource("1_sf6ut")
+texture_region_size = Vector2i(10, 10)
+0:0/0 = 0
+0:0/0/custom_data_2 = true
+0:0/0/custom_data_3 = true
+1:0/0 = 0
+1:0/0/custom_data_0 = true
+1:0/0/custom_data_2 = true
+1:0/0/custom_data_3 = true
+2:0/0 = 0
+2:0/0/custom_data_1 = 1
+2:0/0/custom_data_3 = true
+3:0/0 = 0
+3:0/0/custom_data_1 = 2
+4:0/0 = 0
+4:0/0/custom_data_1 = 1
+4:0/0/custom_data_3 = true
+5:0/0 = 0
+5:0/0/custom_data_1 = 1
+5:0/0/custom_data_3 = true
+
+[resource]
+tile_size = Vector2i(10, 10)
+custom_data_layer_0/name = "used"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "type"
+custom_data_layer_1/type = 2
+custom_data_layer_2/name = "tree"
+custom_data_layer_2/type = 1
+custom_data_layer_3/name = "rock"
+custom_data_layer_3/type = 1
+sources/0 = SubResource("TileSetAtlasSource_kkpt2")

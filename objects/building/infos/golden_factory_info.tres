@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BuildingInfo" load_steps=5 format=3 uid="uid://uh6scwnjg1ms"]
+
+[ext_resource type="Script" path="res://objects/utils/price.gd" id="1_ruugw"]
+[ext_resource type="Script" path="res://objects/utils/buildings/building_info.gd" id="2_37pfx"]
+
+[sub_resource type="Resource" id="Resource_4lx48"]
+script = ExtResource("1_ruugw")
+type = 3
+value = 1
+
+[sub_resource type="Resource" id="Resource_ruexb"]
+script = ExtResource("1_ruugw")
+type = 2
+value = 2
+
+[resource]
+script = ExtResource("2_37pfx")
+name = "Gold factory"
+size = Vector2i(1, 1)
+type = 1
+material = 1
+returnMaterial = Array[ExtResource("1_ruugw")]([SubResource("Resource_4lx48"), SubResource("Resource_ruexb")])
+resourceMaterial = Array[ExtResource("1_ruugw")]([])
+alwaysBreakable = true
+powerNeeded = 0
